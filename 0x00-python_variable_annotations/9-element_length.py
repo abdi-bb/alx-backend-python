@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Module: '9-element_length'
-Returns the tuple of an element and length of the element of a list
+Returns the tuple of element of a list & it's length
 '''
 
 from typing import List, Tuple, Iterable, Sequence
