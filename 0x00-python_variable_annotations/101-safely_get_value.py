@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 '''
 Moule: '101-safely_get_value'
+Return some key values or a given default
 '''
 
 from typing import TypeVar, Mapping, Any, Union
