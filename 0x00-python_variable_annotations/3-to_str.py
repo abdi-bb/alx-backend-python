@@ -6,5 +6,5 @@ Returns string from floating number
 
 
 def to_str(n: float) -> str:
-    '''Returns string from float number'''
+    '''Returns string from float number.'''
     return str(n)
