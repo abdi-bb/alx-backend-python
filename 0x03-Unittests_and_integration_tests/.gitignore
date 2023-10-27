@@ -3,3 +3,6 @@ __pycache__/
 *~
 *-main.py
 study/
+utils.py
+fixtures.py
+client.py
