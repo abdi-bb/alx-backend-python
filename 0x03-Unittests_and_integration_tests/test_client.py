@@ -11,11 +11,10 @@ from client import GithubOrgClient
 
 class TestGithubOrgClient(unittest.TestCase):
     '''Test class'''
-    '''Test inputs'''
     @parameterized.expand([
         ("google",),
         ("abc",)
-        ])
+    ])
     @patch('client.get_json', return_value={"payload": True})
     def test_org(self, org_name, mock_get):
         '''Test the org methed for a correct value'''
@@ -24,7 +23,3 @@ class TestGithubOrgClient(unittest.TestCase):
         expected_response = mock_get.return_value
         self.assertEqual(result, expected_response)
         mock_get.assert_called_once
-
-
-if __name__ == '__main__':
-    unittest.main()
