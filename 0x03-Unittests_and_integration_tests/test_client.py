@@ -3,8 +3,6 @@
 Module: 'test_client'
 '''
 
-import client
-from typing import Mapping, Sequence, Any, Dict
 import unittest
 from unittest.mock import patch
 from parameterized import parameterized
@@ -17,7 +15,7 @@ class TestGithubOrgClient(unittest.TestCase):
     @parameterized.expand([
         ("google",),
         ("abc",)
-    ])
+        ])
     @patch('client.get_json', return_value={"payload": True})
     def test_org(self, org_name, mock_get):
         '''Test the org methed for a correct value'''
