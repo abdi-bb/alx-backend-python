@@ -5,8 +5,10 @@ Module: 'test_utils.py'
 
 import unittest
 from parameterized import parameterized
-from utils import access_nested_map
-from typing import Mapping, Sequence, Any
+import utils
+from typing import Mapping, Sequence, Any, Dict
+from unittest.mock import patch, Mock, MagicMock
+import requests
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -21,7 +23,8 @@ class TestAccessNestedMap(unittest.TestCase):
                                path: Sequence,
                                expected_result: Any) -> None:
         '''Method to test that the method returns what it is supposed to.'''
-        self.assertEqual(access_nested_map(nested_map, path), expected_result)
+        self.assertEqual(utils.access_nested_map(
+            nested_map, path), expected_result)
 
     @parameterized.expand([
         ({}, ("a",)),
@@ -32,7 +35,27 @@ class TestAccessNestedMap(unittest.TestCase):
                                          path: Sequence) -> None:
         '''Test whether the access_nested_map raises exception'''
         with self.assertRaises(KeyError):
-            access_nested_map(nested_map, path)
+            utils.access_nested_map(nested_map, path)
+
+
+class TestGetJson(unittest.TestCase):
+    """Test the get_json function."""
+
+    @parameterized.expand(
+            [
+            ("http://example.com", {"payload": True}),
+            ("http://holberton.io", {"payload": False}),
+        ]
+    )
+    @patch('utils.get_json')
+    def test_get_json(self,
+                      test_url: str,
+                      test_payload: Dict,
+                      mock_get) -> None:
+        """Test that get_json returns the expected result."""
+        mock_get.return_value = test_payload
+        result = utils.get_json(test_url)
+        self.assertEqual(result, test_payload)
 
 
 if __name__ == '__main__':
