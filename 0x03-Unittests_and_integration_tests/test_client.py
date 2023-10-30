@@ -13,6 +13,7 @@ from client import GithubOrgClient
 
 class TestGithubOrgClient(unittest.TestCase):
     '''Test class'''
+    '''Test inputs'''
     @parameterized.expand([
         ("google",),
         ("abc",)
